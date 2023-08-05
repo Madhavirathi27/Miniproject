@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Stock Risk Calculator</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .calculate-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .calculate-button:hover {
+    background-color: #0056b3;
+  }
+  
+  #result {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+</style>
+</head>
+
+<body>
+<script>
+// Function to calculate stock risk based on the provided mean return and standard deviation values
+function calculateRisk() {
+    const stockSymbol = document.getElementById('stockSymbol').value;
+    let meanReturn, risk;
+  
+    // Replace the placeholder values with the actual mean return and risk values you provided
+    switch (stockSymbol) {
+      case 'aapl':
+        meanReturn = 0.0010883834588856912;
+        risk = 0.017925543305655087;
+        break;
+      case 'amd':
+        meanReturn = 0.001352774415659337;
+        risk = 0.0356907100154725;
+        break;
+      case 'googl':
+        meanReturn = 0.0007618107473293647;
+        risk = 0.017204304726560038;
+        break;
+      case 'nflx':
+        meanReturn = 0.0017092751326821729;
+        risk = 0.032441312572265284;
+        break;
+      case 'msft':
+        meanReturn = 0.0008258480852909769;
+        risk = 0.016457171870727847;
+        break;
+      case 'intc':
+        meanReturn = 0.0003325170904946898;
+        risk = 0.01895386826681759;
+        break;
+      case 'tsla':
+        meanReturn = 0.0021846895372044945;
+        risk = 0.03601979126941602;
+        break;
+      default:
+        return;
+    }
+  
+    // Calculate stock risk over 10 decades (years)
+    const decades = 10;
+    const annualizedRisk = risk * Math.sqrt(decades);
+    const formattedRisk = (annualizedRisk * 100).toFixed(2); // Convert to percentage with 2 decimal places
+  
+    // Display the calculated risk
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = `Stock Risk for ${stockSymbol.toUpperCase()}: ${formattedRisk}% over ${decades} decades.`;
+  }
+</script>
+  
+  <div class="container">
+    <h1>Stock Risk Calculator</h1>
+    <div class="form-group">
+      <label for="stockSymbol">Select a stock symbol:</label>
+      <select id="stockSymbol">
+        <option value="aapl">AAPL</option>
+        <option value="amd">AMD</option>
+        <option value="googl">GOOGL</option>
+        <option value="nflx">NFLX</option>
+        <option value="msft">MSFT</option>
+        <option value="intc">INTC</option>
+        <option value="tsla">TSLA</option>
+      </select>
+    </div>
+    <button class="calculate-button" onclick="calculateRisk()">Calculate Risk</button>
+    <p id="result"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
